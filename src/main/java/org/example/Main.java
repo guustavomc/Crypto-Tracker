@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.ArrayList;
+
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
@@ -7,11 +9,15 @@ public class Main {
 
         CryptoPriceFetcher fetcher = new CryptoPriceFetcher();
 
-        Crypto bitcoin = new Crypto("bitcoin",fetcher.fetchCryptoPrice("BTC"));
+        ArrayList<Crypto> famousCrypto = new ArrayList<>();
 
-        System.out.println(bitcoin.getPrice());
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
+        famousCrypto.add(new Crypto("bitcoin",fetcher.fetchCryptoPrice("BTC")));
+        famousCrypto.add(new Crypto("ethereum",fetcher.fetchCryptoPrice("ETH")));
+        famousCrypto.add(new Crypto("solana",fetcher.fetchCryptoPrice("SOL")));
+
+        for (Crypto crypto : famousCrypto){
+            System.out.println(crypto.getCryptoSymbol()+": " + crypto.getPrice()+" USD");
+        }
 
     }
 }
